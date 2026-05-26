@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Niks Inventory - Enterprise Inventory Management System">
+  <title>Dashboard | Niks Inventory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="loading-overlay" id="page-loader"><div class="spinner"></div></div>
+  <div id="app-layout" class="app-layout"></div>
+
+  <div id="page-content-source" style="display:none">
+    <div class="flex-between reveal">
+      <div>
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Welcome back! Here's your inventory overview.</p>
+      </div>
+      <div class="flex-center">
+        <span class="badge badge-primary">Live</span>
+        <span class="text-muted" id="dashboard-date"></span>
+      </div>
+    </div>
+
+    <div class="grid-4" id="dashboard-stats"></div>
+
+    <div class="grid-2 dashboard-charts" style="margin-top:1.5rem;grid-template-columns:2fr 1fr">
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Revenue Analytics</h2>
+        <div class="chart-container"><canvas id="revenue-chart"></canvas></div>
+      </div>
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Sales by Category</h2>
+        <div class="chart-container" style="display:flex;align-items:center;justify-content:center">
+          <canvas id="category-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Monthly Orders</h2>
+        <div class="chart-container"><canvas id="orders-chart"></canvas></div>
+      </div>
+      <div class="glass-card reveal">
+        <div class="flex-between" style="margin-bottom:1rem">
+          <h2>Low Stock Alerts</h2>
+          <a href="stock.html" class="btn btn-sm btn-secondary">View All</a>
+        </div>
+        <div id="low-stock-list"></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="glass-card reveal">
+        <div class="flex-between" style="margin-bottom:1rem">
+          <h2>Recent Orders</h2>
+          <a href="reports.html" class="btn btn-sm btn-secondary">View Reports</a>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr>
+            </thead>
+            <tbody id="recent-orders-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Quick Actions</h2>
+        <div class="quick-actions" id="quick-actions"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/app.js"></script>
+  <script>document.getElementById('dashboard-date').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});</script>
+</body>
+</html>

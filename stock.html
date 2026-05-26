@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stock Tracking - Niks Inventory">
+  <title>Stock Tracking | Niks Inventory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="loading-overlay" id="page-loader"><div class="spinner"></div></div>
+  <div id="app-layout" class="app-layout"></div>
+
+  <div id="page-content-source" style="display:none">
+    <div class="reveal">
+      <h1 class="page-title">Stock Tracking</h1>
+      <p class="page-subtitle">Live inventory count, movements, and stock level monitoring</p>
+    </div>
+
+    <div class="grid-4" id="stock-overview" style="margin-bottom:1.5rem"></div>
+
+    <div class="grid-2" style="margin-top:0">
+      <div class="glass-card reveal">
+        <div class="flex-between" style="margin-bottom:1rem">
+          <h2>Inventory Levels</h2>
+          <div class="flex-center" style="gap:0.5rem">
+            <input type="search" class="form-control" id="stock-search" placeholder="Search..." style="width:180px">
+            <select class="form-control" id="stock-filter" style="width:auto">
+              <option value="all">All Stock</option>
+              <option value="in">In Stock</option>
+              <option value="low">Low Stock</option>
+              <option value="out">Out of Stock</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Product</th><th>Quantity</th><th>Stock Level</th><th>Category</th><th>Action</th></tr></thead>
+            <tbody id="stock-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Stock Movement History</h2>
+        <div class="timeline" id="stock-timeline"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="update-stock-modal">
+    <div class="modal" style="max-width:420px">
+      <div class="modal-header"><h2>Update Stock</h2><button class="btn btn-icon btn-secondary" data-close-modal>×</button></div>
+      <form id="update-stock-form">
+        <div class="modal-body">
+          <input type="hidden" id="update-product-id">
+          <p style="margin-bottom:1rem">Product: <strong id="update-product-name"></strong></p>
+          <div class="form-group"><label>New Quantity</label><input type="number" class="form-control" id="update-quantity" required min="0"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Update Stock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/stock.js"></script>
+</body>
+</html>

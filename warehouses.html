@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Warehouse Management - Niks Inventory">
+  <title>Warehouses | Niks Inventory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    #warehouses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+    .warehouse-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+  </style>
+</head>
+<body>
+  <div class="loading-overlay" id="page-loader"><div class="spinner"></div></div>
+  <div id="app-layout" class="app-layout"></div>
+
+  <div id="page-content-source" style="display:none">
+    <div class="reveal">
+      <h1 class="page-title">Warehouse Management</h1>
+      <p class="page-subtitle">Multiple warehouses, storage locations, and stock transfers</p>
+    </div>
+
+    <div id="warehouses-grid" style="margin-top:1.5rem"></div>
+
+    <div class="warehouse-grid">
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Transfer Stock</h2>
+        <form id="transfer-form">
+          <div class="form-group">
+            <label>From Warehouse</label>
+            <select class="form-control" id="transfer-from" required></select>
+          </div>
+          <div class="form-group">
+            <label>To Warehouse</label>
+            <select class="form-control" id="transfer-to" required></select>
+          </div>
+          <div class="form-group">
+            <label>Product</label>
+            <select class="form-control" id="transfer-product" required></select>
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" class="form-control" id="transfer-qty" required min="1">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%">🔄 Transfer Stock</button>
+        </form>
+      </div>
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Warehouse Analytics</h2>
+        <div class="chart-container"><canvas id="warehouse-analytics-chart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/warehouses.js"></script>
+</body>
+</html>

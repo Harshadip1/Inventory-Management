@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Profile & Settings - Niks Inventory">
+  <title>Profile & Settings | Niks Inventory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .settings-tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+    .settings-tab{padding:0.6rem 1.25rem;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;transition:var(--transition)}
+    .settings-tab.active,.settings-tab:hover{background:rgba(124,58,237,0.2);border-color:var(--primary)}
+    .theme-pick{display:flex;gap:0.75rem}
+    .theme-pick button{padding:1rem 1.5rem;border:2px solid var(--border);border-radius:12px;background:var(--bg-card);cursor:pointer;color:var(--text-primary);transition:var(--transition)}
+    .theme-pick button.active{border-color:var(--primary);box-shadow:var(--neon-purple)}
+    .profile-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem}
+    .profile-avatar-lg{width:80px;height:80px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;font-size:1.75rem;font-weight:700;box-shadow:var(--neon-purple)}
+  </style>
+</head>
+<body>
+  <div class="loading-overlay" id="page-loader"><div class="spinner"></div></div>
+  <div id="app-layout" class="app-layout"></div>
+
+  <div id="page-content-source" style="display:none">
+    <div class="reveal">
+      <h1 class="page-title">Profile & Settings</h1>
+      <p class="page-subtitle">Manage your account, company, and preferences</p>
+    </div>
+
+    <div class="profile-header glass-card reveal" style="padding:1.5rem;margin-top:1.5rem">
+      <div class="profile-avatar-lg" id="profile-avatar">NA</div>
+      <div>
+        <h2 id="profile-display-name">User</h2>
+        <p class="text-muted" id="profile-display-role">Administrator</p>
+      </div>
+      <button class="btn btn-danger" id="logout-btn" style="margin-left:auto">Logout</button>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Profile Information</h2>
+        <form id="profile-form">
+          <div class="form-group"><label>Full Name</label><input class="form-control" id="profile-name" required></div>
+          <div class="form-group"><label>Email</label><input type="email" class="form-control" id="profile-email" required></div>
+          <div class="form-group"><label>Role</label><input class="form-control" id="profile-role"></div>
+          <div class="form-group"><label>Company</label><input class="form-control" id="profile-company"></div>
+          <button type="submit" class="btn btn-primary">Save Profile</button>
+        </form>
+      </div>
+
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Company Settings</h2>
+        <form id="company-form">
+          <div class="form-group"><label>Company Name</label><input class="form-control" id="company-name"></div>
+          <div class="form-group">
+            <label>Currency</label>
+            <select class="form-control" id="currency">
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="INR">INR (₹)</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Low Stock Threshold (default)</label><input type="number" class="form-control" id="low-stock-threshold" min="1"></div>
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.5rem">
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Theme Settings</h2>
+        <div class="theme-pick">
+          <button type="button" data-theme-pick="dark">🌙 Dark Mode</button>
+          <button type="button" data-theme-pick="light">☀️ Light Mode</button>
+        </div>
+      </div>
+
+      <div class="glass-card reveal">
+        <h2 style="margin-bottom:1rem">Notification Preferences</h2>
+        <form id="notif-form">
+          <label style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;cursor:pointer">
+            <input type="checkbox" id="notif-email"> Email notifications
+          </label>
+          <label style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;cursor:pointer">
+            <input type="checkbox" id="notif-push"> Push notifications
+          </label>
+          <label style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;cursor:pointer">
+            <input type="checkbox" id="notif-lowstock"> Low stock alerts
+          </label>
+          <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer">
+            <input type="checkbox" id="notif-orders"> New order alerts
+          </label>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
